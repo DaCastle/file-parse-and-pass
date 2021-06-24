@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import Button from '@material-ui/core/Button';
 import { parseExcelSpreadsheetData } from '../utilities'
+import DataTable from './DataTable'
 
-function Upload({ buttonText }) {
+export default function Upload({ buttonText }) {
 
   const [file, setFile] = useState(null)
 
-  const onChange = (event) => {
+  const onChange = async (event) => {
     const spreadsheet = event.target.files[0]
-    const fileData = parseExcelSpreadsheetData(spreadsheet)
+    const fileData = await parseExcelSpreadsheetData(spreadsheet)
     setFile({
       spreadsheet,
       fileData
@@ -29,10 +30,13 @@ function Upload({ buttonText }) {
         </Button>
       </label>
       {file &&
-        <p>{file.spreadsheet.name} selected</p>
+        <>
+          <p>{file.spreadsheet.name} selected</p>
+          <p>{file.fileData.length - 1} rows of data found</p>
+          <DataTable fileData={file.fileData} />
+        </>
       }
+
     </>
   )
 }
-
-export default Upload;

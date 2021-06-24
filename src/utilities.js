@@ -1,18 +1,21 @@
 import XLSX from 'xlsx'
 
-export const parseExcelSpreadsheetData = (file) => {
+export const parseExcelSpreadsheetData = async (file) => {
+    return new Promise((resolve, reject) => {
+        let reader = new FileReader();
 
-    const reader = new FileReader();
+        reader.onload = (e) => {
 
-    reader.onload = function (e) {
-        const data = e.target.result;
-        const convertedData = XLSX.read(data, { type: 'binary' });
-        const worksheetName = convertedData.SheetNames[0];
-        const worksheet = convertedData.Sheets[worksheetName];
+            const data = e.target.result;
+            const convertedData = XLSX.read(data, { type: 'binary' });
+            const worksheetName = convertedData.SheetNames[0];
+            const worksheet = convertedData.Sheets[worksheetName];
+            const parsedData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+            resolve(parsedData);
+        };
 
-        const dataParse = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-        console.log(dataParse)
-        return dataParse
-    };
-    reader.readAsBinaryString(file)
+        reader.onerror = reject;
+
+        reader.readAsBinaryString(file);
+    })
 }
