@@ -13,9 +13,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import { selectOptions } from '../utilities';
 
-export default function DataTable({ fileData, oncheckboxClicked }) {
+export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelection, selectOptions }) {
 
     const columnHeaders = fileData.headers
     const rows = fileData.rows
@@ -32,7 +31,7 @@ export default function DataTable({ fileData, oncheckboxClicked }) {
                                     <span>
                                         <FormControlLabel
                                             value="Ignore"
-                                            control={<Checkbox onChange={() => oncheckboxClicked(header)} color="primary" />}
+                                            control={<Checkbox onChange={() => onCheckboxClicked(header)} color="primary" />}
                                             label="Ignore"
                                             labelPlacement="end"
                                         />
@@ -40,10 +39,10 @@ export default function DataTable({ fileData, oncheckboxClicked }) {
                                     <span>
                                         <FormControl id='mapping'>
                                             <InputLabel htmlFor="mapping-select">Mapping</InputLabel>
-                                            <Select defaultValue="" id="mapping-select" disabled={header.ignore}>
+                                            <Select onChange={(option) => onDropDownSelection(option.target.value, header.value)} defaultValue="" id="mapping-select" disabled={header.ignore}>
                                                 {selectOptions.map(option => {
                                                     return (
-                                                        <MenuItem key={option} value={option}>{option}</MenuItem>
+                                                        <MenuItem disabled={option.disabled} key={option.value} value={option.value}>{option.value}</MenuItem>
                                                     )
                                                 })}
                                             </Select>
@@ -74,5 +73,7 @@ export default function DataTable({ fileData, oncheckboxClicked }) {
 
 DataTable.propTypes = {
     fileData: PropTypes.object.isRequired,
-    oncheckboxClicked: PropTypes.func.isRequired
+    onCheckboxClicked: PropTypes.func.isRequired,
+    onDropDownSelection: PropTypes.func.isRequired,
+    selectOptions: PropTypes.array.isRequired
 }

@@ -32,7 +32,8 @@ export const addDefaultMappings = (headers) => {
 }
 
 export const selectOptions = [
-    'ID', 'age', 'sex', 'occupation', 'years of schooling',
-    'SES', 'diagnosis', 'race', 'ethnicity', 'dominant hand', 'address', 'nationality', 'religion',
-    'political party'
+    "address", "age", "diagnosis", "dominant hand", "ethnicity", "id",
+    "nationality", "occupation", "political party", "race", "religion",
+    "ses", "sex", "years of schooling"
 ]
+ 
