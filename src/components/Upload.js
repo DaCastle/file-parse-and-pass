@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { parseExcelSpreadsheetData, addDefaultMappings, selectOptions } from '../utilities'
 import DataTable from './DataTable'
-
+import Submit from './Submit'
 export default function Upload({ buttonText }) {
 
   const [file, setFile] = useState(null)
@@ -113,7 +113,7 @@ export default function Upload({ buttonText }) {
         <>
           <p>{file.spreadsheet.name} selected</p>
           <p>{file.fileData.rows.length} rows of data found</p>
-
+          <Submit headers={file.fileData.headers} />
           <DataTable
             fileData={file.fileData}
             onCheckboxClicked={onCheckboxClicked}

@@ -14,3 +14,7 @@ th.headers > span > label {
 #mapping {
   vertical-align: inherit;
 }
+
+#submitButton {
+  margin-bottom: 1em;
+}
