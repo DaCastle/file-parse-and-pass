@@ -19,3 +19,9 @@ export const parseExcelSpreadsheetData = async (file) => {
         reader.readAsBinaryString(file);
     })
 }
+
+export const selectOptions = [
+    'ID', 'age', 'sex', 'occupation', 'years of schooling',
+    'SES', 'diagnosis', 'race', 'ethnicity', 'dominant hand', 'address', 'nationality', 'religion',
+    'political party'
+]

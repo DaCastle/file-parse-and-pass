@@ -9,6 +9,11 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import { selectOptions } from '../utilities';
 
 export default function DataTable({ fileData }) {
 
@@ -31,6 +36,18 @@ export default function DataTable({ fileData }) {
                                             label="Ignore"
                                             labelPlacement="end"
                                         />
+                                    </span>
+                                    <span>
+                                        <FormControl id='mapping'>
+                                            <InputLabel htmlFor="mapping-select">Mapping</InputLabel>
+                                            <Select defaultValue="" id="mapping-select">
+                                                {selectOptions.map(option => {
+                                                    return (
+                                                        <MenuItem key={option} value={option}>{option}</MenuItem>
+                                                    )
+                                                })}
+                                            </Select>
+                                        </FormControl>
                                     </span>
                                 </TableCell>
                             )

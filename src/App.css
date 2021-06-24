@@ -6,3 +6,11 @@
 th.headers > span > label {
     transform: scale(.80);
 }
+
+#mapping-select {
+  min-width: 90px;
+}
+
+#mapping {
+  vertical-align: inherit;
+}
