@@ -55,8 +55,7 @@ export default function Upload({ buttonText }) {
   }
 
   const onDropDownSelection = (mappedValue, columnName) => {
-    console.log(mappedValue)
-    console.log(columnName)
+
     let previousSelection = null
 
     const updatedHeaders = file.fileData.headers.map(header => {
@@ -113,7 +112,13 @@ export default function Upload({ buttonText }) {
         <>
           <p>{file.spreadsheet.name} selected</p>
           <p>{file.fileData.rows.length} rows of data found</p>
-          <Submit headers={file.fileData.headers} />
+
+          <Submit
+            headers={file.fileData.headers}
+            rows={file.fileData.rows}
+            spreadsheet={file.spreadsheet}
+          />
+
           <DataTable
             fileData={file.fileData}
             onCheckboxClicked={onCheckboxClicked}

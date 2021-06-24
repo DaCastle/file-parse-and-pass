@@ -21,7 +21,7 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
 
     return (
         <TableContainer component={Paper}>
-            <Table size="small">
+            <Table size="small" stickyHeader={true}>
                 <TableHead>
                     <TableRow>
                         {columnHeaders.map((header, index) => {
