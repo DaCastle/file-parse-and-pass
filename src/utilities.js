@@ -20,6 +20,17 @@ export const parseExcelSpreadsheetData = async (file) => {
     })
 }
 
+export const addDefaultMappings = (headers) => {
+    let withDefaultMappings = headers.map(header => {
+        return ({
+            value: header,
+            ignore: false,
+            mapping: null
+        })
+    })
+    return withDefaultMappings
+}
+
 export const selectOptions = [
     'ID', 'age', 'sex', 'occupation', 'years of schooling',
     'SES', 'diagnosis', 'race', 'ethnicity', 'dominant hand', 'address', 'nationality', 'religion',
