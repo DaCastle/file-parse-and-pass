@@ -7,6 +7,8 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
 
 export default function DataTable({ fileData }) {
 
@@ -20,7 +22,17 @@ export default function DataTable({ fileData }) {
                     <TableRow>
                         {columnHeaders.map((header, index) => {
                             return (
-                                <TableCell key={index}>{header}</TableCell>
+                                <TableCell key={index} className='headers'>
+                                    <span>{header}</span>
+                                    <span>
+                                        <FormControlLabel
+                                            value="Ignore"
+                                            control={<Checkbox color="primary" />}
+                                            label="Ignore"
+                                            labelPlacement="end"
+                                        />
+                                    </span>
+                                </TableCell>
                             )
                         })}
                     </TableRow>
@@ -45,4 +57,4 @@ export default function DataTable({ fileData }) {
 
 DataTable.propTypes = {
     fileData: PropTypes.array.isRequired
-  }
+}

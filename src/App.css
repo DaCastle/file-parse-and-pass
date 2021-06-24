@@ -2,3 +2,7 @@
   text-align: center;
   padding-top: 5em;
 }
+
+th.headers > span > label {
+    transform: scale(.80);
+}
