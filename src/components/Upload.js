@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import { parseExcelSpreadsheetData } from '../utilities'
 import DataTable from './DataTable'
@@ -39,4 +40,8 @@ export default function Upload({ buttonText }) {
 
     </>
   )
+}
+
+Upload.propTypes = {
+  buttonText: PropTypes.string.isRequired
 }
