@@ -7,6 +7,10 @@ Allows a user to:
 4) have valdation to ensure alll columns are ignored or mapped
 5) 'submit' (print to console) the uploaded file, the column headers with ignore/mapping, and the rows of data
 
+## Demo Video
+
+youtube demo link - https://youtu.be/cKcfJIQ9VDQ
+
 ## Project Board
 
 https://github.com/DaCastle/file-parse-and-pass/projects/1
@@ -15,11 +19,6 @@ https://github.com/DaCastle/file-parse-and-pass/projects/1
 ## Live View
 
 Hosted here - https://parseandpass.netlify.app/
-
-## Demo Video
-
-youtube video link - 
-
 ## References
 
 https://material-ui.com/getting-started/usage/
