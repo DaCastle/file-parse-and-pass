@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { FileDrop } from 'react-file-drop'
 import Button from '@material-ui/core/Button';
 import { parseExcelSpreadsheetData, addDefaultMappings, selectOptions } from '../utilities'
 import DataTable from './DataTable'
@@ -9,8 +10,13 @@ export default function Upload({ buttonText }) {
   const [file, setFile] = useState(null)
 
 
-  const onFileUpload = async (event) => {
-    const spreadsheet = event.target.files[0]
+  const onFileUpload = async (event, file = false) => {
+    /**
+     * on input 'click', the event target will have the file,
+     * and on 'drop', the file is passed as a seperate arg.
+     * Using the file arg to check where to look
+     */
+    const spreadsheet = file ? file : event.target.files[0]
     const fileData = await parseExcelSpreadsheetData(spreadsheet)
     const headers = addDefaultMappings(fileData[0])
     const rows = fileData.slice(1)
@@ -94,21 +100,39 @@ export default function Upload({ buttonText }) {
 
   }
 
+
+  const onFileDrop = (file, event) => {
+    /**
+     * reusing onFileUpload (:
+     */
+    onFileUpload(event, file)
+  }
+
   return (
     <>
       <label htmlFor="upload-file">
-        <input
-          hidden
-          id="upload-file"
-          name="upload-file"
-          type="file"
-          onChange={(event) => onFileUpload(event)}
-        />
-        <Button color="secondary" variant="contained" component="span">
-          {buttonText}
-        </Button>
+
+        <FileDrop onDrop={(files, event) => onFileDrop(files[0], event)}>
+
+          <input
+            hidden
+            id="upload-file"
+            name="upload-file"
+            type="file"
+            onChange={(event) => onFileUpload(event)}
+          />
+
+          <Button color="secondary" variant="contained" component="span">
+            {buttonText}
+          </Button>
+
+        </FileDrop>
+
       </label>
-      {file &&
+
+
+      {
+        file &&
         <>
           <p>{file.spreadsheet.name} selected</p>
           <p>{file.fileData.rows.length} rows of data found</p>
