@@ -4,7 +4,7 @@ Allows a user to:
 1) upload an excel or csv file
 2) view the expected file table data
 3) select to either ignore or map each column
-4) have valdation to ensure alll columns are ignored or mapped
+4) have valdation to ensure all columns are ignored or mapped
 5) 'submit' (print to console) the uploaded file, the column headers with ignore/mapping, and the rows of data
 
 ## Demo Video
