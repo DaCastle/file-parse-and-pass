@@ -16,6 +16,9 @@ export default function Upload({ buttonText }) {
      */
   const onFileUpload = async (event, file = false) => {
 
+    // reset state if sequential file uploads occur
+    setFile(null)
+
     const spreadsheet = file ? file : event.target.files[0]
     const fileData = await parseSpreadsheetData(spreadsheet)
     const headers = addDefaultMappings(fileData[0])
