@@ -6,6 +6,11 @@ export default function Submit({ headers, rows, spreadsheet }) {
 
     let disable = false
 
+    /**
+     * if a single column header has not been 'checked' to be ignored
+     * AND also does not have a valid dropdown option selected,
+     * we want the Submit button to be disabled
+     */
     headers.forEach(header => {
         if (!header.ignore && !header.mapping) {
             disable = true
@@ -37,7 +42,10 @@ export default function Submit({ headers, rows, spreadsheet }) {
     }
 
     return (
-        <Button id='submitButton' onClick={() => onSubmit()} disabled={disable} variant="contained" color="primary">
+        <Button id='submitButton'
+            onClick={() => onSubmit()} disabled={disable}
+            variant="contained"
+            color="primary">
             Submit
         </Button>
     )

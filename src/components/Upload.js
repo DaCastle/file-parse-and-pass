@@ -9,18 +9,25 @@ export default function Upload({ buttonText }) {
 
   const [file, setFile] = useState(null)
 
-
-  const onFileUpload = async (event, file = false) => {
     /**
      * on input 'click', the event target will have the file,
      * and on 'drop', the file is passed as a seperate arg.
      * Using the file arg to check where to look
      */
+  const onFileUpload = async (event, file = false) => {
+
     const spreadsheet = file ? file : event.target.files[0]
     const fileData = await parseSpreadsheetData(spreadsheet)
     const headers = addDefaultMappings(fileData[0])
     const rows = fileData.slice(1)
 
+    /**
+     * Extra Credit - if the addDefaultMappings function mapped
+     * an initial header value with a select option, we want to
+     * disable that option off the bat. This map() & forEach()
+     * check to see if a mapped header value matches a select
+     * option, and if so, we want the option to startDisabled
+     */
     const options = selectOptions.map(option => {
 
       let startDisabled = false
@@ -47,6 +54,12 @@ export default function Upload({ buttonText }) {
     })
   }
 
+  /**
+   * When a checkbox is clicked, find the clicked
+   * header object and swap the ignore flag
+   * 
+   * @param {string} option 
+   */
   const onCheckboxClicked = (option) => {
     const updatedHeaders = file.fileData.headers.map(header => {
       if (header.value === option.value) {
@@ -69,10 +82,20 @@ export default function Upload({ buttonText }) {
     }))
   }
 
+  /**
+   * @param {string} mappedValue 
+   * @param {string} columnName 
+   */
   const onDropDownSelection = (mappedValue, columnName) => {
 
     let previousSelection = null
 
+    /**
+     * find the selected header object that matches the columnName
+     * whose dropdown was used. Take note of the current(previous)
+     * selected value as previousSelection. Then return the new
+     * header object having the updated selected option.
+     */
     const updatedHeaders = file.fileData.headers.map(header => {
 
       if (header.value === columnName) {
@@ -86,6 +109,11 @@ export default function Upload({ buttonText }) {
       }
     })
 
+    /**
+     * Swap the select option 'disabled' flag for both the previous
+     * and newly selected options. previousSelection will become available,
+     * and the new mappedValue will become disabled.
+     */
     const updatedSelectOptions = file.selectableOptions.map(option => {
       if (option.value === mappedValue || option.value === previousSelection) {
         return {

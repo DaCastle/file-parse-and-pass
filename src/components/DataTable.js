@@ -27,7 +27,9 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
                         {columnHeaders.map((header, index) => {
                             return (
                                 <TableCell key={index} className='headers'>
+
                                     <span>{header.value}</span>
+
                                     <span>
                                         <FormControlLabel
                                             value="Ignore"
@@ -36,23 +38,28 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
                                             labelPlacement="end"
                                         />
                                     </span>
+
                                     <span>
                                         <FormControl id='mapping'>
                                             <InputLabel htmlFor="mapping-select">Mapping</InputLabel>
+
                                             <Select
                                                 onChange={(option) => onDropDownSelection(option.target.value, header.value)}
                                                 defaultValue={header.mapping ? header.mapping : ''} id="mapping-select"
                                                 disabled={header.ignore}
                                             >
                                                 <MenuItem key='empty' value={null}>Select an option</MenuItem>
+
                                                 {selectOptions.map(option => {
                                                     return (
                                                         <MenuItem disabled={option.disabled} key={option.value} value={option.value}>{option.value}</MenuItem>
                                                     )
                                                 })}
+
                                             </Select>
                                         </FormControl>
                                     </span>
+
                                 </TableCell>
                             )
                         })}
