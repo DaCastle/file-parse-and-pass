@@ -22,9 +22,18 @@ export default function Upload({ buttonText }) {
     const rows = fileData.slice(1)
 
     const options = selectOptions.map(option => {
+
+      let startDisabled = false
+
+      headers.forEach(header => {
+        if (header.mapping === option) {
+          startDisabled = true
+        }
+      })
+
       return ({
         value: option,
-        disabled: false
+        disabled: startDisabled
       })
     })
 

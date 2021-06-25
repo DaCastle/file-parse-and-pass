@@ -39,7 +39,11 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
                                     <span>
                                         <FormControl id='mapping'>
                                             <InputLabel htmlFor="mapping-select">Mapping</InputLabel>
-                                            <Select onChange={(option) => onDropDownSelection(option.target.value, header.value)} defaultValue="" id="mapping-select" disabled={header.ignore}>
+                                            <Select
+                                                onChange={(option) => onDropDownSelection(option.target.value, header.value)}
+                                                defaultValue={header.mapping ? header.mapping : ''} id="mapping-select"
+                                                disabled={header.ignore}
+                                            >
                                                 <MenuItem key='empty' value={null}>Select an option</MenuItem>
                                                 {selectOptions.map(option => {
                                                     return (

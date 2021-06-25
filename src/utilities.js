@@ -22,10 +22,20 @@ export const parseSpreadsheetData = async (file) => {
 
 export const addDefaultMappings = (headers) => {
     let withDefaultMappings = headers.map(header => {
+
+        let mappedValue = null
+
+        selectOptions.forEach(option => {
+            if (header.toLowerCase() === option) {
+                mappedValue = option
+                console.log(mappedValue)
+            }
+        })
+
         return ({
             value: header,
             ignore: false,
-            mapping: null
+            mapping: mappedValue
         })
     })
     return withDefaultMappings

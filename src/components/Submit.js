@@ -32,7 +32,7 @@ export default function Submit({ headers, rows, spreadsheet }) {
 
         console.log('spreadsheet - ', spreadsheet)
         console.log('headers - ', headers)
-        console.table('rows - ', rows)
+        console.log('rows - ', rows)
 
     }
 
