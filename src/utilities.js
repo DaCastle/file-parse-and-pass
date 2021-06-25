@@ -9,27 +9,27 @@ import XLSX from 'xlsx'
  * @returns Promise
  */
 export const parseSpreadsheetData = async (file) => {
-    return new Promise((resolve, reject) => {
-        try {
-            let reader = new FileReader();
+  return new Promise((resolve, reject) => {
+    try {
+      let reader = new FileReader();
 
-            reader.onload = (e) => {
+      reader.onload = (e) => {
 
-                const data = e.target.result;
-                const convertedData = XLSX.read(data, { type: 'binary' });
-                const worksheetName = convertedData.SheetNames[0];
-                const worksheet = convertedData.Sheets[worksheetName];
-                const parsedData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-                resolve(parsedData);
-            };
+        const data = e.target.result;
+        const convertedData = XLSX.read(data, { type: 'binary' });
+        const worksheetName = convertedData.SheetNames[0];
+        const worksheet = convertedData.Sheets[worksheetName];
+        const parsedData = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+        resolve(parsedData);
+      };
 
-            reader.onerror = reject;
+      reader.onerror = reject;
 
-            reader.readAsBinaryString(file);
-        } catch {
-            console.log('file explorer closed before selecting file')
-        }
-    })
+      reader.readAsBinaryString(file);
+    } catch {
+      console.log('file explorer closed before selecting file')
+    }
+  })
 }
 
 /**
@@ -45,31 +45,31 @@ export const parseSpreadsheetData = async (file) => {
  * @returns array
  */
 export const addDefaultMappings = (headers) => {
-    let withDefaultMappings = headers.map(header => {
+  let withDefaultMappings = headers.map(header => {
 
-        let mappedValue = null
+    let mappedValue = null
 
-        selectOptions.forEach(option => {
-            if (header.trim().toLowerCase() === option) {
-                mappedValue = option
-            }
-        })
-
-        return ({
-            value: header,
-            ignore: false,
-            mapping: mappedValue
-        })
+    selectOptions.forEach(option => {
+      if (header.trim().toLowerCase() === option) {
+        mappedValue = option
+      }
     })
-    return withDefaultMappings
+
+    return ({
+      value: header,
+      ignore: false,
+      mapping: mappedValue
+    })
+  })
+  return withDefaultMappings
 }
 
 /**
  * Our static list of selectable options
  */
 export const selectOptions = [
-    "address", "age", "diagnosis", "dominant hand", "ethnicity", "id",
-    "nationality", "occupation", "political party", "race", "religion",
-    "ses", "sex", "years of schooling"
+  "address", "age", "diagnosis", "dominant hand", "ethnicity", "id",
+  "nationality", "occupation", "political party", "race", "religion",
+  "ses", "sex", "years of schooling"
 ]
- 
+

@@ -9,11 +9,11 @@ export default function Upload({ buttonText }) {
 
   const [file, setFile] = useState(null)
 
-    /**
-     * on input 'click', the event target will have the file,
-     * and on 'drop', the file is passed as a seperate arg.
-     * Using the file arg to check where to look
-     */
+  /**
+   * on input 'click', the event target will have the file,
+   * and on 'drop', the file is passed as a seperate arg.
+   * Using the file arg to check where to look
+   */
   const onFileUpload = async (event, file = false) => {
 
     // reset state if sequential file uploads occur

@@ -16,76 +16,76 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelection, selectOptions }) {
 
-    const columnHeaders = fileData.headers
-    const rows = fileData.rows
+  const columnHeaders = fileData.headers
+  const rows = fileData.rows
 
-    return (
-        <TableContainer component={Paper}>
-            <Table size="small" stickyHeader={true}>
-                <TableHead>
-                    <TableRow>
-                        {columnHeaders.map((header, index) => {
-                            return (
-                                <TableCell key={index} className='headers'>
+  return (
+    <TableContainer component={Paper}>
+      <Table size="small" stickyHeader={true}>
+        <TableHead>
+          <TableRow>
+            {columnHeaders.map((header, index) => {
+              return (
+                <TableCell key={index} className='headers'>
 
-                                    <span>{header.value}</span>
+                  <span>{header.value}</span>
 
-                                    <span>
-                                        <FormControlLabel
-                                            value="Ignore"
-                                            control={<Checkbox onChange={() => onCheckboxClicked(header)} color="primary" />}
-                                            label="Ignore"
-                                            labelPlacement="end"
-                                        />
-                                    </span>
+                  <span>
+                    <FormControlLabel
+                      value="Ignore"
+                      control={<Checkbox onChange={() => onCheckboxClicked(header)} color="primary" />}
+                      label="Ignore"
+                      labelPlacement="end"
+                    />
+                  </span>
 
-                                    <span>
-                                        <FormControl id='mapping'>
-                                            <InputLabel htmlFor="mapping-select">Mapping</InputLabel>
+                  <span>
+                    <FormControl id='mapping'>
+                      <InputLabel htmlFor="mapping-select">Mapping</InputLabel>
 
-                                            <Select
-                                                onChange={(option) => onDropDownSelection(option.target.value, header.value)}
-                                                defaultValue={header.mapping ? header.mapping : ''} id="mapping-select"
-                                                disabled={header.ignore}
-                                            >
-                                                <MenuItem key='empty' value={null}>Select an option</MenuItem>
+                      <Select
+                        onChange={(option) => onDropDownSelection(option.target.value, header.value)}
+                        defaultValue={header.mapping ? header.mapping : ''} id="mapping-select"
+                        disabled={header.ignore}
+                      >
+                        <MenuItem key='empty' value={null}>Select an option</MenuItem>
 
-                                                {selectOptions.map(option => {
-                                                    return (
-                                                        <MenuItem disabled={option.disabled} key={option.value} value={option.value}>{option.value}</MenuItem>
-                                                    )
-                                                })}
-
-                                            </Select>
-                                        </FormControl>
-                                    </span>
-
-                                </TableCell>
-                            )
+                        {selectOptions.map(option => {
+                          return (
+                            <MenuItem disabled={option.disabled} key={option.value} value={option.value}>{option.value}</MenuItem>
+                          )
                         })}
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows.map((row, index) => {
-                        return (
-                            <TableRow key={index}>
-                                {row.map((value, index) => {
-                                    return (
-                                        <TableCell key={index} align='center'>{value}</TableCell>
-                                    )
-                                })}
-                            </TableRow>
-                        )
-                    })}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    )
+
+                      </Select>
+                    </FormControl>
+                  </span>
+
+                </TableCell>
+              )
+            })}
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row, index) => {
+            return (
+              <TableRow key={index}>
+                {row.map((value, index) => {
+                  return (
+                    <TableCell key={index} align='center'>{value}</TableCell>
+                  )
+                })}
+              </TableRow>
+            )
+          })}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
 }
 
 DataTable.propTypes = {
-    fileData: PropTypes.object.isRequired,
-    onCheckboxClicked: PropTypes.func.isRequired,
-    onDropDownSelection: PropTypes.func.isRequired,
-    selectOptions: PropTypes.array.isRequired
+  fileData: PropTypes.object.isRequired,
+  onCheckboxClicked: PropTypes.func.isRequired,
+  onDropDownSelection: PropTypes.func.isRequired,
+  selectOptions: PropTypes.array.isRequired
 }
