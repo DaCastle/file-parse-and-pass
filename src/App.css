@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  padding-top: 5em;
+  padding-top: 1em;
 }
 
 th.headers > span > label {
@@ -17,4 +17,8 @@ th.headers > span > label {
 
 #submitButton {
   margin-bottom: 1em;
+}
+
+.MuiTableContainer-root {
+  max-height: 400px;
 }
