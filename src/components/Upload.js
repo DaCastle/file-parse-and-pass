@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FileDrop } from 'react-file-drop'
 import Button from '@material-ui/core/Button';
-import { parseExcelSpreadsheetData, addDefaultMappings, selectOptions } from '../utilities'
+import { parseSpreadsheetData, addDefaultMappings, selectOptions } from '../utilities'
 import DataTable from './DataTable'
 import Submit from './Submit'
 export default function Upload({ buttonText }) {
@@ -17,7 +17,7 @@ export default function Upload({ buttonText }) {
      * Using the file arg to check where to look
      */
     const spreadsheet = file ? file : event.target.files[0]
-    const fileData = await parseExcelSpreadsheetData(spreadsheet)
+    const fileData = await parseSpreadsheetData(spreadsheet)
     const headers = addDefaultMappings(fileData[0])
     const rows = fileData.slice(1)
 

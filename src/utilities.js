@@ -1,6 +1,6 @@
 import XLSX from 'xlsx'
 
-export const parseExcelSpreadsheetData = async (file) => {
+export const parseSpreadsheetData = async (file) => {
     return new Promise((resolve, reject) => {
         let reader = new FileReader();
 
