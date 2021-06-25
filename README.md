@@ -1,4 +1,40 @@
-# Getting Started with Create React App
+# Parse & Pass
+
+Allows a user to:
+1) upload an excel or csv file
+2) view the expected file table data
+3) select to either ignore or map each column
+4) have valdation to ensure alll columns are ignored or mapped
+5) 'submit' (print to console) the uploaded file, the column headers with ignore/mapping, and the rows of data
+
+## Project Board
+
+https://github.com/DaCastle/file-parse-and-pass/projects/1
+(Can get an idea of how I broke down the work)
+
+## Live View
+
+Hosted here - https://parseandpass.netlify.app/
+
+## Demo Video
+
+youtube video link - 
+
+## References
+
+https://material-ui.com/getting-started/usage/
+https://qawithexperts.com/article/javascript/read-excel-file-using-javascript-xlsx-or-xls/239
+https://stackoverflow.com/questions/46909260/reading-excel-file-in-reactjs
+https://simon-schraeder.de/posts/filereader-async/
+
+## Additional Libraries Used
+
+Material-UI - https://www.npmjs.com/package/@material-ui/core
+XLSX - https://www.npmjs.com/package/xlsx 
+react-file-drop - https://www.npmjs.com/package/react-file-drop
+
+---
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
