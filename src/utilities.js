@@ -50,7 +50,7 @@ export const addDefaultMappings = (headers) => {
         let mappedValue = null
 
         selectOptions.forEach(option => {
-            if (header.toLowerCase() === option) {
+            if (header.trim().toLowerCase() === option) {
                 mappedValue = option
             }
         })
