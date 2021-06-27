@@ -8,7 +8,7 @@ import Submit from './Submit'
 export default function Upload({ buttonText }) {
 
   const [file, setFile] = useState(null)
-
+  const [loading, setLoading] = useState(false)
   /**
    * on input 'click', the event target will have the file,
    * and on 'drop', the file is passed as a seperate arg.
@@ -18,6 +18,7 @@ export default function Upload({ buttonText }) {
 
     // reset state if sequential file uploads occur
     setFile(null)
+    setLoading(true)
 
     const spreadsheet = file ? file : event.target.files[0]
     const fileData = await parseSpreadsheetData(spreadsheet)
@@ -55,6 +56,8 @@ export default function Upload({ buttonText }) {
       },
       selectableOptions: options
     })
+
+    setLoading(false)
   }
 
   /**
@@ -148,6 +151,10 @@ export default function Upload({ buttonText }) {
     onFileUpload(event, file)
   }
 
+  const loadingIcon = (
+    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+  )
+
   return (
     <>
       <label htmlFor="upload-file">
@@ -163,7 +170,7 @@ export default function Upload({ buttonText }) {
           />
 
           <Button color="secondary" variant="contained" component="span">
-            {buttonText}
+            {loading ? loadingIcon : buttonText}
           </Button>
 
         </FileDrop>
