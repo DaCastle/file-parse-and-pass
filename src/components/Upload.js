@@ -164,6 +164,7 @@ export default function Upload({ buttonText }) {
           <input
             hidden
             id="upload-file"
+            data-testid='upload-file'
             name="upload-file"
             type="file"
             onChange={(event) => onFileUpload(event)}

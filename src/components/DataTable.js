@@ -33,7 +33,7 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
                   <span>
                     <FormControlLabel
                       value="Ignore"
-                      control={<Checkbox onChange={() => onCheckboxClicked(header)} color="primary" />}
+                      control={<Checkbox data-testid='ignore-checkbox' onChange={() => onCheckboxClicked(header)} color="primary" />}
                       label="Ignore"
                       labelPlacement="end"
                     />
