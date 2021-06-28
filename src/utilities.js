@@ -15,7 +15,8 @@ export const parseSpreadsheetData = async (file) => {
 
       reader.onload = (e) => {
         // If the file is over half a MB, too loarge for demo (:
-        if ((e.total / 1024 / 1024).toFixed(4) > .5) {
+        console.log((e.total / 1024 / 1024).toFixed(4) + 'MB')
+        if ((e.total / 1024 / 1024).toFixed(4) > 1.5) {
           resolve({ error: true })
         }
         const data = e.target.result;
