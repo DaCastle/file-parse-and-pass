@@ -3,12 +3,16 @@
   padding-top: 1em;
 }
 
-th.headers > span > label {
+th.headers > div > label {
     transform: scale(.80);
 }
 
 #mapping-select {
   min-width: 90px;
+}
+
+th.headers > p {
+  margin-bottom: 0px;
 }
 
 #mapping {

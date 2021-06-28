@@ -26,20 +26,20 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
           <TableRow>
             {columnHeaders.map((header, index) => {
               return (
-                <TableCell key={index} className='headers'>
+                <TableCell key={index} style={{ minWidth: '250px' }} className='headers'>
 
-                  <span>{header.value}</span>
+                  <p>{header.value}</p>
 
-                  <span>
+                  <div>
+
                     <FormControlLabel
                       value="Ignore"
                       control={<Checkbox data-testid='ignore-checkbox' onChange={() => onCheckboxClicked(header)} color="primary" />}
                       label="Ignore"
                       labelPlacement="end"
                     />
-                  </span>
 
-                  <span>
+
                     <FormControl id='mapping'>
                       <InputLabel htmlFor="mapping-select">Mapping</InputLabel>
 
@@ -58,7 +58,8 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
 
                       </Select>
                     </FormControl>
-                  </span>
+
+                  </div>
 
                 </TableCell>
               )
@@ -66,6 +67,7 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
           </TableRow>
         </TableHead>
         <TableBody>
+
           {rows.map((row, index) => {
             return (
               <TableRow key={index}>
@@ -77,6 +79,7 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
               </TableRow>
             )
           })}
+
         </TableBody>
       </Table>
     </TableContainer>
