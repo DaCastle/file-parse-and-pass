@@ -8,7 +8,7 @@ import Submit from './Submit'
 export default function Upload({ buttonText }) {
 
   const [file, setFile] = useState(null)
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState({ isLoading: false, error: false })
   /**
    * on input 'click', the event target will have the file,
    * and on 'drop', the file is passed as a seperate arg.
@@ -18,46 +18,51 @@ export default function Upload({ buttonText }) {
 
     // reset state if sequential file uploads occur
     setFile(null)
-    setLoading(true)
+    setLoading({ isLoading: true, error: false })
 
     const spreadsheet = file ? file : event.target.files[0]
     const fileData = await parseSpreadsheetData(spreadsheet)
-    const headers = addDefaultMappings(fileData[0])
-    const rows = fileData.slice(1)
 
-    /**
-     * Extra Credit - if the addDefaultMappings function mapped
-     * an initial header value with a select option, we want to
-     * disable that option off the bat. This map() & forEach()
-     * check to see if a mapped header value matches a select
-     * option, and if so, we want the option to startDisabled
-     */
-    const options = selectOptions.map(option => {
+    if (fileData.error) {
+      setLoading({ isLoading: false, error: true })
+    } else {
+      const headers = addDefaultMappings(fileData[0])
+      const rows = fileData.slice(1)
 
-      let startDisabled = false
+      /**
+       * Extra Credit - if the addDefaultMappings function mapped
+       * an initial header value with a select option, we want to
+       * disable that option off the bat. This map() & forEach()
+       * check to see if a mapped header value matches a select
+       * option, and if so, we want the option to startDisabled
+       */
+      const options = selectOptions.map(option => {
 
-      headers.forEach(header => {
-        if (header.mapping === option) {
-          startDisabled = true
-        }
+        let startDisabled = false
+
+        headers.forEach(header => {
+          if (header.mapping === option) {
+            startDisabled = true
+          }
+        })
+
+        return ({
+          value: option,
+          disabled: startDisabled
+        })
       })
 
-      return ({
-        value: option,
-        disabled: startDisabled
+      setFile({
+        spreadsheet,
+        fileData: {
+          headers,
+          rows
+        },
+        selectableOptions: options
       })
-    })
 
-    setFile({
-      spreadsheet,
-      fileData: {
-        headers,
-        rows
-      },
-      selectableOptions: options
-    })
-
-    setLoading(false)
+      setLoading({ isLoading: false, error: false })
+    }
   }
 
   /**
@@ -171,13 +176,15 @@ export default function Upload({ buttonText }) {
           />
 
           <Button color="secondary" variant="contained" component="span">
-            {loading ? loadingIcon : buttonText}
+            {loading.isLoading ? loadingIcon : buttonText}
           </Button>
 
         </FileDrop>
 
       </label>
 
+      {loading.error &&
+        <p>The file is too large for this demo</p>}
 
       {
         file &&
