@@ -184,7 +184,7 @@ export default function Upload({ buttonText }) {
       </label>
 
       {loading.error &&
-        <p>The file is too large for this demo</p>}
+        <p>The file is too large for this demo - max file size is 1.5MB</p>}
 
       {
         file &&
