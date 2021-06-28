@@ -48,7 +48,7 @@ export const parseSpreadsheetData = async (file) => {
  * @param {array} headers 
  * @returns array
  */
-export const addDefaultMappings = (headers) => {
+export const setDefaultMappings = (headers) => {
   let withDefaultMappings = headers.map(header => {
 
     let mappedValue = null
@@ -69,9 +69,36 @@ export const addDefaultMappings = (headers) => {
 }
 
 /**
+     * Extra Credit - if the addDefaultMappings function mapped
+     * an initial header value with a select option, we want to
+     * disable that option off the bat. This map() & forEach()
+     * check to see if a mapped header value matches a select
+     * option, and if so, we want the option to startDisabled
+     */
+export const setDefaultSelectOptions = (headers) => {
+
+  const options = selectOptions.map(option => {
+
+    let startDisabled = false
+
+    headers.forEach(header => {
+      if (header.mapping === option) {
+        startDisabled = true
+      }
+    })
+
+    return ({
+      value: option,
+      disabled: startDisabled
+    })
+  })
+  return options
+}
+
+/**
  * Our static list of selectable options
  */
-export const selectOptions = [
+const selectOptions = [
   "address", "age", "diagnosis", "dominant hand", "ethnicity", "id",
   "nationality", "occupation", "political party", "race", "religion",
   "ses", "sex", "years of schooling"

@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { FileDrop } from 'react-file-drop'
 import Button from '@material-ui/core/Button';
-import { parseSpreadsheetData, addDefaultMappings, selectOptions } from '../utilities'
+import { parseSpreadsheetData, setDefaultMappings, setDefaultSelectOptions } from '../utilities'
 import DataTable from './DataTable'
 import Submit from './Submit'
 export default function Upload({ buttonText }) {
 
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState({ isLoading: false, error: false })
+
   /**
-   * on input 'click', the event target will have the file,
-   * and on 'drop', the file is passed as a seperate arg.
-   * Using the file arg to check where to look
+   * on 'click' - the event target will have the file,
+   * on 'drop' - the file is passed as a seperate arg
    */
   const onFileUpload = async (event, file = false) => {
 
@@ -26,31 +26,9 @@ export default function Upload({ buttonText }) {
     if (fileData.error) {
       setLoading({ isLoading: false, error: true })
     } else {
-      const headers = addDefaultMappings(fileData[0])
+      const headers = setDefaultMappings(fileData[0])
+      const options = setDefaultSelectOptions(headers)
       const rows = fileData.slice(1)
-
-      /**
-       * Extra Credit - if the addDefaultMappings function mapped
-       * an initial header value with a select option, we want to
-       * disable that option off the bat. This map() & forEach()
-       * check to see if a mapped header value matches a select
-       * option, and if so, we want the option to startDisabled
-       */
-      const options = selectOptions.map(option => {
-
-        let startDisabled = false
-
-        headers.forEach(header => {
-          if (header.mapping === option) {
-            startDisabled = true
-          }
-        })
-
-        return ({
-          value: option,
-          disabled: startDisabled
-        })
-      })
 
       setFile({
         spreadsheet,
