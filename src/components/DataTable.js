@@ -13,7 +13,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import { DataTableRowsMemo } from './DataTableRowsMemo';
 export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelection, selectOptions }) {
 
   const columnHeaders = fileData.headers
@@ -45,7 +45,9 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
 
                       <Select
                         onChange={(option) => onDropDownSelection(option.target.value, header.value)}
-                        defaultValue={header.mapping ? header.mapping : ''} id="mapping-select"
+                        defaultValue={header.mapping ? header.mapping : ''}
+                        value={header.mapping ? header.mapping : ''}
+                        id="mapping-select"
                         disabled={header.ignore}
                       >
                         <MenuItem key='empty' value={null}>Select an option</MenuItem>
@@ -68,17 +70,7 @@ export default function DataTable({ fileData, onCheckboxClicked, onDropDownSelec
         </TableHead>
         <TableBody>
 
-          {rows.map((row, index) => {
-            return (
-              <TableRow key={index}>
-                {row.map((value, index) => {
-                  return (
-                    <TableCell key={index} align='center'>{value}</TableCell>
-                  )
-                })}
-              </TableRow>
-            )
-          })}
+          <DataTableRowsMemo rows={rows} />
 
         </TableBody>
       </Table>
