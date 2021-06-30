@@ -10,7 +10,6 @@ function DataTableRows({ rows }) {
       return (
         <TableRow key={index}>
           {row.map((value, index) => {
-            console.log('row created')
             return (
               <TableCell key={index} align='center'>{value}</TableCell>
             )

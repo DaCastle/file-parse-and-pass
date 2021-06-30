@@ -1,4 +1,4 @@
-import { act, findByTestId, fireEvent, getByTestId, getByText, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Upload from './components/Upload';
 import * as utils from './utilities';
 
@@ -31,7 +31,7 @@ test('renders the loading icon', async () => {
 });
 
 test('renders the file name selected', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
@@ -45,7 +45,7 @@ test('renders the file name selected', async () => {
 });
 
 test('renders the number of table data rows', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
@@ -59,7 +59,7 @@ test('renders the number of table data rows', async () => {
 });
 
 test('renders the submit button', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
@@ -73,7 +73,7 @@ test('renders the submit button', async () => {
 });
 
 test('renders the column header values', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
@@ -90,7 +90,7 @@ test('renders the column header values', async () => {
 });
 
 test('renders the expected number of Ignore checkboxes', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
@@ -106,7 +106,7 @@ test('renders the expected number of Ignore checkboxes', async () => {
 
 
 test('renders the expected number of mapping dropdowns', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
@@ -121,7 +121,7 @@ test('renders the expected number of mapping dropdowns', async () => {
 });
 
 test('renders the expected row data', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
@@ -138,7 +138,7 @@ test('renders the expected row data', async () => {
 });
 
 test('renders the submit button disabled', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
@@ -153,7 +153,7 @@ test('renders the submit button disabled', async () => {
 });
 
 test('renders the submit button enabled', async () => {
-  const { container } = render(<Upload buttonText='Click or Drag excel/csv file here' />);
+  render(<Upload buttonText='Click or Drag excel/csv file here' />);
   const button = screen.getByTestId('upload-file')
 
   Object.defineProperty(button, 'files', {
