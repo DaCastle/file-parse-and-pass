@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import { FileDrop } from 'react-file-drop'
-import Button from '@material-ui/core/Button';
-import { parseSpreadsheetData, setDefaultMappings, setDefaultSelectOptions } from '../utilities'
+import Button from '@material-ui/core/Button'
+import {
+  parseSpreadsheetData,
+  setDefaultMappings,
+  setDefaultSelectOptions,
+} from '../utilities'
 import DataTable from './DataTable'
 import Submit from './Submit'
 export default function Upload({ buttonText }) {
-
   const [file, setFile] = useState(null)
   const [loading, setLoading] = useState({ isLoading: false, error: false })
 
@@ -15,7 +18,6 @@ export default function Upload({ buttonText }) {
    * on 'drop' - the file is passed as a seperate arg
    */
   const onFileUpload = async (event, file = false) => {
-
     // reset state if sequential file uploads occur
     setFile(null)
     setLoading({ isLoading: true, error: false })
@@ -34,9 +36,9 @@ export default function Upload({ buttonText }) {
         spreadsheet,
         fileData: {
           headers,
-          rows
+          rows,
         },
-        selectableOptions: options
+        selectableOptions: options,
       })
 
       setLoading({ isLoading: false, error: false })
@@ -46,37 +48,36 @@ export default function Upload({ buttonText }) {
   /**
    * When a checkbox is clicked, find the clicked
    * header object and swap the ignore flag
-   * 
-   * @param {string} option 
+   *
+   * @param {string} option
    */
   const onCheckboxClicked = (option) => {
-    const updatedHeaders = file.fileData.headers.map(header => {
+    const updatedHeaders = file.fileData.headers.map((header) => {
       if (header.value === option.value) {
         return {
           value: header.value,
           ignore: !header.ignore,
-          mapping: header.mapping
+          mapping: header.mapping,
         }
       } else {
         return header
       }
     })
 
-    setFile(prevState => ({
+    setFile((prevState) => ({
       ...prevState,
       fileData: {
         ...prevState.fileData,
-        headers: updatedHeaders
-      }
+        headers: updatedHeaders,
+      },
     }))
   }
 
   /**
-   * @param {string} mappedValue 
-   * @param {string} columnName 
+   * @param {string} mappedValue
+   * @param {string} columnName
    */
   const onDropDownSelection = (mappedValue, columnName) => {
-
     let previousSelection = null
 
     /**
@@ -85,13 +86,12 @@ export default function Upload({ buttonText }) {
      * selected value as previousSelection. Then return the new
      * header object having the updated selected option.
      */
-    const updatedHeaders = file.fileData.headers.map(header => {
-
+    const updatedHeaders = file.fileData.headers.map((header) => {
       if (header.value === columnName) {
         previousSelection = header.mapping
         return {
           ...header,
-          mapping: mappedValue
+          mapping: mappedValue,
         }
       } else {
         return header
@@ -103,29 +103,26 @@ export default function Upload({ buttonText }) {
      * and newly selected options. previousSelection will become available,
      * and the new mappedValue will become disabled.
      */
-    const updatedSelectOptions = file.selectableOptions.map(option => {
+    const updatedSelectOptions = file.selectableOptions.map((option) => {
       if (option.value === mappedValue || option.value === previousSelection) {
         return {
           ...option,
-          disabled: !option.disabled
+          disabled: !option.disabled,
         }
       } else {
         return option
       }
-
     })
 
-    setFile(prevState => ({
+    setFile((prevState) => ({
       ...prevState,
       fileData: {
         ...prevState.fileData,
-        headers: updatedHeaders
+        headers: updatedHeaders,
       },
-      selectableOptions: updatedSelectOptions
+      selectableOptions: updatedSelectOptions,
     }))
-
   }
-
 
   const onFileDrop = (file, event) => {
     /**
@@ -135,37 +132,38 @@ export default function Upload({ buttonText }) {
   }
 
   const loadingIcon = (
-    <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+    <div class='lds-ring'>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   )
 
   return (
     <>
-      <label htmlFor="upload-file">
-
+      <label htmlFor='upload-file'>
         <FileDrop onDrop={(files, event) => onFileDrop(files[0], event)}>
-
           <input
             hidden
-            id="upload-file"
+            id='upload-file'
             data-testid='upload-file'
-            name="upload-file"
-            type="file"
+            name='upload-file'
+            type='file'
             onChange={(event) => onFileUpload(event)}
           />
 
-          <Button color="secondary" variant="contained" component="span">
+          <Button color='secondary' variant='contained' component='span'>
             {loading.isLoading ? loadingIcon : buttonText}
           </Button>
-
         </FileDrop>
-
       </label>
 
-      {loading.error &&
-        <p>The file is too large for this demo - max file size is 1.5MB</p>}
+      {loading.error && (
+        <p>The file is too large for this demo - max file size is 1.5MB</p>
+      )}
 
-      {
-        file &&
+      {file && (
         <>
           <p>{file.spreadsheet.name} selected</p>
           <p>{file.fileData.rows.length} rows of data found</p>
@@ -182,14 +180,12 @@ export default function Upload({ buttonText }) {
             onDropDownSelection={onDropDownSelection}
             selectOptions={file.selectableOptions}
           />
-
         </>
-      }
-
+      )}
     </>
   )
 }
 
 Upload.propTypes = {
-  buttonText: PropTypes.string.isRequired
+  buttonText: PropTypes.string.isRequired,
 }

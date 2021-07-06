@@ -1,11 +1,12 @@
 # Parse & Pass
 
 Allows a user to:
-1) upload an excel or csv file
-2) view the expected file table data
-3) select to either ignore or map each column
-4) have valdation to ensure all columns are ignored or mapped
-5) 'submit' (print to console) the uploaded file, the column headers with ignore/mapping, and the rows of data
+
+1. upload an excel or csv file
+2. view the expected file table data
+3. select to either ignore or map each column
+4. have valdation to ensure all columns are ignored or mapped
+5. 'submit' (print to console) the uploaded file, the column headers with ignore/mapping, and the rows of data
 
 ## Demo Video
 
@@ -19,6 +20,7 @@ https://github.com/DaCastle/file-parse-and-pass/projects/1
 ## Live View
 
 Hosted here - https://parseandpass.netlify.app/
+
 ## References
 
 https://material-ui.com/getting-started/usage/
@@ -29,10 +31,11 @@ https://simon-schraeder.de/posts/filereader-async/
 ## Additional Libraries Used
 
 Material-UI - https://www.npmjs.com/package/@material-ui/core
-XLSX - https://www.npmjs.com/package/xlsx 
+XLSX - https://www.npmjs.com/package/xlsx
 react-file-drop - https://www.npmjs.com/package/react-file-drop
 
 ---
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
