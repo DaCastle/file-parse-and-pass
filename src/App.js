@@ -5,7 +5,7 @@ import Upload from './components/Upload'
 export default function App() {
   return (
     <Container maxWidth='md' className='App'>
-      <Upload buttonText='Click or Drag excel/csv file here' />
+      <Upload buttonText='Click or Drag excel/csv file heres' />
     </Container>
   )
 }
